@@ -32,13 +32,21 @@ class User < ApplicationRecord
   
   def follow(user_id)
     relationships.create(followed_id: user_id)
-    #?? 
   end
 
   def unfollow(user_id)
     relationships.find_by(followed_id: user_id).destroy
-    #??
   end
+  
+  
+    def self.search(search)
+      # 検索ワードがある場合
+      if search
+        User.where(['content LIKE ?', "%#{search}%"])
+      else
+        User.all
+      end
+    end
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }

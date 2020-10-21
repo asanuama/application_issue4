@@ -18,4 +18,7 @@ Rails.application.routes.draw do
     
   end 
     
+   get '/search' => 'search#search', as: 'search'
+ # get '/users_index' => 'search#users_index',as: 'Users_index_path'
+  
 end
